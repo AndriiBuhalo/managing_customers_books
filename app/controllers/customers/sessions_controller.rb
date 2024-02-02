@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Customers::SessionsController < Devise::SessionsController
-
   respond_to :json
   # before_action :configure_sign_in_params, only: [:create]
 
@@ -31,7 +30,7 @@ class Customers::SessionsController < Devise::SessionsController
 
   def respond_with(resource, _opts = {})
     render json: {
-      status: { code: 200, message: "Logged in sucessfully." },
+      status: { code: 200, message: 'Logged in sucessfully.' },
       data: CustomerSerializer.new(resource).serializable_hash[:data][:attributes]
     }, status: :ok
   end
@@ -40,13 +39,13 @@ class Customers::SessionsController < Devise::SessionsController
     if current_customer
       render json: {
         status: 200,
-        message: "Logged out sucessfully"
+        message: 'Logged out sucessfully'
       }, status: :ok
     else
       render json: {
         status: 401,
         message: "Couldn't find an active session"
-        }, status: :unauthorized
+      }, status: :unauthorized
     end
   end
 end
