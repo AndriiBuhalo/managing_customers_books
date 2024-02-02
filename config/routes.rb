@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'current_customer', to: 'current_customer#index'
 
   devise_for :customers, path: '', path_names: {
                                      sign_in: 'login',
@@ -11,7 +10,11 @@ Rails.application.routes.draw do
                            registrations: 'customers/registrations'
                          }
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      resources :books, only: %i[create destroy]
+    end
+  end
 
-  # Defines the root path route ("/")
+  get 'current_customer', to: 'current_customer#index'
 end

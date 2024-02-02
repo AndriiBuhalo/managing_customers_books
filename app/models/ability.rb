@@ -3,9 +3,9 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
-    if user
-      if user.admin?
+  def initialize(customer)
+    if customer
+      if customer.admin?
         admin_abilities
       else
         authenticated_abilities
@@ -23,7 +23,6 @@ class Ability
 
   def authenticated_abilities
     can :create, Book
-    can :destroy, Book, user_id: user.id
   end
 
   def guest_abilities
