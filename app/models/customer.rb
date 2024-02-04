@@ -9,9 +9,4 @@ class Customer < ApplicationRecord
   has_many :books, dependent: :destroy
 
   enum role: %i[customer admin]
-  after_initialize :set_default_role, if: :new_record?
-
-  def set_default_role
-    self.role ||= :customer
-  end
 end
