@@ -16,7 +16,7 @@ module Api
       end
 
       def destroy
-        @book.destroy
+        @book.destroy!
         render json: { message: 'Book deleted successfully' }, status: :ok
       end
 

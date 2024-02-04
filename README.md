@@ -24,4 +24,4 @@ default port 4000
 
 ### POSTMAN COLLECTION
 You can find inside file:
-```Managing Customer Book API.postman_collection.json```
+```./spec/support/Managing Customer Book API.postman_collection.json```

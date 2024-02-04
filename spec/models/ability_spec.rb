@@ -1,7 +1,6 @@
-
 RSpec.describe Ability, type: :model do
-  let(:user) { FactoryBot.create(:customer) }
-  let(:admin) { FactoryBot.create(:customer, role: "admin") }
+  let(:user) { create(:customer) }
+  let(:admin) { create(:customer, role: 'admin') }
 
   describe 'guest abilities' do
     subject(:ability) { Ability.new(nil) }

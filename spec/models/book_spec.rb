@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Book, type: :model do
-  let(:book) { FactoryBot.create(:book) }
+  let(:book) { create(:book) }
 
   it 'is valid with valid attributes' do
     expect(book).to be_valid

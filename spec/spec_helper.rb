@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
-
 ENV['COVERAGE'] = 'true'
 require_relative 'support/simplecov'
 require 'rails_helper'
-require "cancan/matchers"
+require 'cancan/matchers'
+require 'devise'
+require 'devise/jwt'
+require 'devise/jwt/test_helpers'
 
 RSpec.configure do |config|
+  config.include Devise::Test::IntegrationHelpers, type: :request
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
