@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -13,9 +15,17 @@ gem 'rack-cors', '~> 2.0'
 gem 'rails', '~> 7.0.8'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'pry-rails'
+  gem 'rspec-rails', '~> 6.1'
+end
+
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails', '~> 6.1'
+  gem 'simplecov', require: false
 end
 
 group :development do

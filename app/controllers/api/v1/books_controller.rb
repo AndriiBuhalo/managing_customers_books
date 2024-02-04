@@ -1,24 +1,30 @@
-class Api::V1::BooksController < ApiController
-  load_and_authorize_resource
+# frozen_string_literal: true
 
-  def create
-    @book = current_customer.books.build(book_params)
+module Api
+  module V1
+    class BooksController < ApiController
+      load_and_authorize_resource
 
-    if @book.save
-      render json: @book, status: :created
-    else
-      render json: { errors: @book.errors.full_messages }, status: :unprocessable_entity
+      def create
+        @book = current_customer.books.build(book_params)
+
+        if @book.save
+          render json: BookSerializer.new(@book).serializable_hash[:data][:attributes], status: :created
+        else
+          render json: { errors: @book.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
+      def destroy
+        @book.destroy
+        render json: { message: 'Book deleted successfully' }, status: :ok
+      end
+
+      private
+
+      def book_params
+        params.require(:book).permit(:name, :title, :description)
+      end
     end
-  end
-
-  def destroy
-    @book.destroy
-    render json: { message: 'Book deleted successfully' }, status: :ok
-  end
-
-  private
-
-  def book_params
-    params.require(:book).permit(:name, :title, :description)
   end
 end
