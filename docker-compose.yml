@@ -1,0 +1,17 @@
+version: '3'
+services:
+  # PostgreSQL service
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: managing_customers_books_production
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  # Rails API application service
+  web:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "4000:4000"
