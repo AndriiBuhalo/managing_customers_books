@@ -24,10 +24,15 @@ default: &default
   username: postgres
   password: postgres
 
+docker:
+  <<: *default
+  database: managing_customers_books_docker
+  host: db
+
 development:
   <<: *default
   database: managing_customers_books_development
-
+  host: localhost
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is

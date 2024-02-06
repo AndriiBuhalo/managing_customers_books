@@ -18,8 +18,8 @@ COPY . .
 EXPOSE 4000
 
 # Set environment variables
-ENV RAILS_ENV=development
+ENV RAILS_ENV=docker
 ENV PORT=4000
 
 # Precompile assets, migrate the database, and start the Rails server
-CMD ["bash", "-c", " RAILS_ENV=development bundle exec rake db:create db:migrate && RAILS_ENV=development bundle exec rails s -b '0.0.0.0' -p $PORT"]
+CMD ["bash", "-c", " RAILS_ENV=docker bundle exec rake db:create db:migrate && RAILS_ENV=docker bundle exec rails s -b '0.0.0.0' -p $PORT"]

@@ -7,6 +7,9 @@ services:
       POSTGRES_DB: managing_customers_books_production
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+
 
   # Rails API application service
   web:
