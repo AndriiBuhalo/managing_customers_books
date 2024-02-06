@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Book, type: :model do
+RSpec.describe Book do
   let(:book) { create(:book) }
 
   it 'is valid with valid attributes' do

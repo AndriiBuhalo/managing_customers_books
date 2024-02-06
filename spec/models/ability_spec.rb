@@ -1,9 +1,11 @@
-RSpec.describe Ability, type: :model do
+# frozen_string_literal: true
+
+RSpec.describe Ability do
   let(:user) { create(:customer) }
   let(:admin) { create(:customer, role: 'admin') }
 
   describe 'guest abilities' do
-    subject(:ability) { Ability.new(nil) }
+    subject(:ability) { described_class.new(nil) }
 
     it 'can read sign up' do
       expect(ability).to be_able_to(:read, :sign_up)
@@ -19,7 +21,7 @@ RSpec.describe Ability, type: :model do
   end
 
   describe 'authenticated user abilities' do
-    subject(:ability) { Ability.new(user) }
+    subject(:ability) { described_class.new(user) }
 
     it 'can create books' do
       expect(ability).to be_able_to(:create, Book)
@@ -35,7 +37,7 @@ RSpec.describe Ability, type: :model do
   end
 
   describe 'admin abilities' do
-    subject(:ability) { Ability.new(admin) }
+    subject(:ability) { described_class.new(admin) }
 
     it 'can manage all resources' do
       expect(ability).to be_able_to(:manage, :all)

@@ -8,5 +8,5 @@ class Customer < ApplicationRecord
 
   has_many :books, dependent: :destroy
 
-  enum role: %i[customer admin]
+  enum role: { customer: 0, admin: 1 }
 end

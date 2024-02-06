@@ -1,4 +1,6 @@
-RSpec.describe CurrentCustomerController, type: :request do
+# frozen_string_literal: true
+
+RSpec.describe CurrentCustomerController do
   describe 'GET /current_customer' do
     context 'when authenticated' do
       let(:customer) { create(:customer) }
@@ -9,8 +11,8 @@ RSpec.describe CurrentCustomerController, type: :request do
 
       it 'returns current customer details' do
         expect(response).to have_http_status(:ok)
-        expect(JSON.parse(response.body)['email']).to eq(customer.email)
-        expect(JSON.parse(response.body)['role']).to eq(customer.role)
+        expect(response.parsed_body['email']).to eq(customer.email)
+        expect(response.parsed_body['role']).to eq(customer.role)
       end
     end
 

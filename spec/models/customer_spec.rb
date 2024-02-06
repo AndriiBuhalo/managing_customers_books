@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Customer, type: :model do
+RSpec.describe Customer do
   it 'has many books' do
-    customer = FactoryBot.create(:customer)
+    customer = create(:customer)
     book1 = create(:book, customer:)
     book2 = create(:book, customer:)
 
