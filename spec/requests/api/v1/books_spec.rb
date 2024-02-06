@@ -1,14 +1,17 @@
-RSpec.describe 'Api::V1::Books', type: :request do
+# frozen_string_literal: true
+
+RSpec.describe 'Api::V1::Books' do
   describe 'POST /api/v1/books' do
     let(:customer) { create(:customer) }
     let(:customer_token) { Devise::JWT::TestHelpers.auth_headers({}, customer)['Authorization'] }
+
     it 'creates a book when authenticated' do
       headers = { 'Authorization' => customer_token, 'Content-Type' => 'application/json' }
       book_params = { name: 'Sample Book', title: 'Sample Title', description: 'Sample Description' }
 
       post('/api/v1/books', params: book_params.to_json, headers:)
       expect(response).to have_http_status(:created)
-      expect(JSON.parse(response.body)['name']).to eq('Sample Book')
+      expect(response.parsed_body['name']).to eq('Sample Book')
     end
 
     it 'returns errors when the book creation fails' do
@@ -18,7 +21,7 @@ RSpec.describe 'Api::V1::Books', type: :request do
       post('/api/v1/books', params: invalid_book_params.to_json, headers:)
 
       expect(response).to have_http_status(:unprocessable_entity)
-      expect(JSON.parse(response.body)['errors']).to be_present
+      expect(response.parsed_body['errors']).to be_present
     end
   end
 
@@ -33,7 +36,7 @@ RSpec.describe 'Api::V1::Books', type: :request do
       delete("/api/v1/books/#{book.id}", headers:)
 
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)['message']).to eq('Book deleted successfully')
+      expect(response.parsed_body['message']).to eq('Book deleted successfully')
     end
   end
 end

@@ -8,6 +8,6 @@ FactoryBot.define do
     title { Faker::Book.title }
     description { Faker::Name.unique.name }
 
-    association :customer, factory: :customer
+    customer
   end
 end

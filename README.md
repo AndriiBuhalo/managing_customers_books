@@ -17,10 +17,6 @@ before first start
 ``` rails s```
 
 default port 4000
-### IF SOMETHING WENT WRONG WITH KEY
-1. rm -rf config/credentials.yml.enc
-2. EDITOR="code --wait" rails credentials:edit
-
 
 ### POSTMAN COLLECTION
 You can find inside file:
